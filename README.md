@@ -1,106 +1,78 @@
-# NexOrder – Cloud-Native Microservices Platform
+# NexOrder - Microservices-Based Order Management System
 
-NexOrder is a **cloud-native, event-driven microservices platform** built to demonstrate **production-aligned backend architecture** using **.NET, Azure, and modern design patterns**.
+NexOrder is a scalable, microservices-based backend system designed to
+simulate a real-world e-commerce/order management platform. It
+demonstrates modern backend engineering practices using .NET,
+containerization, cloud deployment, and distributed system design.
 
-The project focuses on **clean architecture, scalability, security, and cloud-native integrations**, rather than UI-heavy features.
+------------------------------------------------------------------------
 
----
+## 🚀 Key Features
 
-## 🚀 Platform Overview
+-   Microservices-based architecture
+-   RESTful APIs using .NET
+-   API Gateway with JWT authentication
+-   Role-based access control (RBAC)
+-   Docker containerization
+-   Unified Docker Compose setup for local orchestration
+-   CI/CD pipeline using GitHub Actions
+-   Deployment to Azure Web App for Containers
+-   Scalable and production-ready design principles
 
-NexOrder is composed of multiple independent microservices, each owning its domain and data, communicating asynchronously via messaging and secured centrally using an API Gateway.
+------------------------------------------------------------------------
 
-**Key architectural goals:**
-- Loose coupling between services
-- Centralized authentication & API security
-- Event-driven communication
-- Cloud-first deployment approach
-- Production-grade configuration and secret management
+## 🏗️ Architecture Overview
 
----
+The system follows a microservices architecture where each service is
+independently developed, deployed, and scaled.
 
-## 🧩 Microservices
+### Core Services
 
-| Service | Responsibility | Repository |
-|------|---------------|-----------|
-| **User Service** | User management and user-related data | https://github.com/mitanshu-patel/NexOrder.UserService |
-| **Product Service** | Product catalog and product lifecycle events | https://github.com/mitanshu-patel/NexOrder.ProductService |
-| **Order Service** | Order creation and order processing | https://github.com/mitanshu-patel/NexOrder.OrderService |
-| **Auth Service** | Token-based authentication and JWT issuance | https://github.com/mitanshu-patel/NexOrder.AuthService |
+-   ProductService -- Manages product catalog
+-   OrderService -- Handles order processing
+-   AuthService -- Handles authentication (JWT-based)
+-   API Gateway -- Central entry point for all client requests
 
----
+------------------------------------------------------------------------
 
-## 🏗️ Architecture
+## 🔐 Authentication & Authorization
 
-- **Azure Functions** for serverless microservices
-- **Azure API Management (APIM)** as the API Gateway
-- **JWT-based authentication** enforced at APIM level
-- **Azure Service Bus (Topics & Subscriptions)** for asynchronous communication
-- **SQL Server / Azure SQL** for persistence
-- **Azure Key Vault** for secrets and configuration
-- **GitHub Actions** for CI/CD pipelines
+-   Authentication is handled using JWT tokens
+-   Token validation is performed at the API Gateway level
+-   Only authenticated requests are forwarded to microservices
+-   Services implement role-based authorization using claims
 
----
+Flow: Client → API Gateway → Microservices
 
-## 🔐 Security & Authentication
+------------------------------------------------------------------------
 
-- Authentication handled via **Azure API Management**
-- JWT validation using `validate-jwt` policies
-- Tokens issued by **Auth Service**
-- Services remain stateless and secure
+## 🐳 Containerization & Local Orchestration
 
----
+NexOrder supports full containerization using Docker, with a unified
+Docker Compose setup.
 
-## 📦 Messaging & Event-Driven Design
+Run all services: docker compose up --build
 
-- Azure Service Bus Topics & Subscriptions
-- Domain events published and consumed asynchronously
-- Enables loose coupling and scalability
+------------------------------------------------------------------------
 
----
+## ☁️ Deployment
 
-## 🗄️ Data Persistence
+-   GitHub Actions builds Docker images
+-   Deployed to Azure Web App for Containers
 
-- Database per microservice
-- Entity Framework Core (Code First)
-- Fluent API configurations
-- No shared databases
+------------------------------------------------------------------------
 
----
+## 📦 Technologies Used
 
-## ⚙️ CI/CD & Deployment
+-   .NET (Web API)
+-   Docker & Docker Compose
+-   Azure
+-   GitHub Actions
+-   JWT Authentication
 
-- GitHub Actions per service
-- Build, migrate, and deploy Function Apps
-- Secure config via App Settings and Key Vault
+------------------------------------------------------------------------
 
----
+## 📌 How to Use
 
-## 🧠 Design Principles
-
-- Clean Architecture
-- CQRS with MediatR
-- SOLID principles
-- Separation of concerns
-
----
-
-## 🎯 Purpose
-
-Learning-focused project to demonstrate real-world backend architecture and Azure integrations.
-
----
-
-## 🛠️ Tech Stack
-
-- .NET, Azure Functions
-- Azure APIM, Service Bus, Key Vault
-- SQL Server / Azure SQL
-- JWT Authentication
-- GitHub Actions
-
----
-
-## 📄 License
-
-For learning and demonstration purposes.
+1.  Clone repository
+2.  Run: docker compose up --build
