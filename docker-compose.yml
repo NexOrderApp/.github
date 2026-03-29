@@ -37,6 +37,14 @@ services:
         - nexorderorderssql_data:/var/opt/mssql
       networks:
         - nexorder-network
+    
+  nexorderredis:
+      container_name: nexorderredis
+      image: redis:7-alpine
+      ports:
+        - 6379:6379
+      networks:
+        - nexorder-network
   
   nexorder-authservice:
     container_name: nexorderauthservice
@@ -93,11 +101,14 @@ services:
       # DB_PASSWORD=<strong_password_for_sql_server>
       # ConnectionStrings__ServiceBusConnectionString=<service_bus_connection_string>
       # RunMigration=true
+      # RedisCacheOptions_Configuration=nexorderredis:6379
+      # RedisCacheOptions_InstanceName=NexOrderRedis
       - product-local.env
     networks:
       - nexorder-network
     depends_on:
       - nexorderproductssql
+      - nexorderredis
 
   nexorder-orderservice:
     container_name: nexorderorderservice
